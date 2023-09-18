@@ -117,6 +117,30 @@ T	T	T	T	T
   (d)  O(x) that says that x is an only child  
   (e)  T(x) that says that x has exactly two brothers 
   ```
+(a) B(x,y) that says that x is a brother of y
+B(x,y) := ¬F(x) ∧ ∃z (P(z,x) ∧ P(z,y) ∧ ¬(x=y))
+
+Explanation: x is a brother of y if x is not female (¬F(x)) and there exists some z such that z is a parent of both x and y (P(z,x) ∧ P(z,y)), and x is not the same person as y (¬(x=y)).
+
+(b) A(x,y) that says that x is an aunt of y
+A(x,y) := F(x) ∧ ∃z (P(z,y) ∧ ∃w (P(w,z) ∧ P(w,x)))
+
+Explanation: x is an aunt of y if x is female (F(x)) and there exists some z such that z is a parent of y (P(z,y)) and there exists some w such that w is a parent of both z and x (P(w,z) ∧ P(w,x)).
+
+(c) C(x,y) that says that x and y are cousins
+C(x,y) := ∃z ∃w (¬(z=w) ∧ P(z,x) ∧ P(w,y) ∧ ∃u (P(u,z) ∧ P(u,w)))
+
+Explanation: x and y are cousins if there exist z and w such that z is not the same person as w (¬(z=w)), z is a parent of x (P(z,x)), w is a parent of y (P(w,y)), and there exists some u such that u is a parent of both z and w (P(u,z) ∧ P(u,w)).
+
+(d) O(x) that says that x is an only child
+O(x) := ∀y (P(y,x) → ∀z (P(y,z) → (z=x)))
+
+Explanation: x is an only child if for all y such that y is a parent of x (P(y,x)), for all z, if y is a parent of z then z must be x (P(y,z) → (z=x)).
+
+(e) T(x) that says that x has exactly two brothers
+T(x) := ∃y ∃z (¬(y=z) ∧ B(y,x) ∧ B(z,x) ∧ ∀w (B(w,x) → ((w=y) ∨ (w=z))))
+
+Explanation: x has exactly two brothers if there exist y and z such that y is not the same person as z (¬(y=z)), both y and z are brothers of x (B(y,x) ∧ B(z,x)), and for all w, if w is a brother of x then w must be either y or z (B(w,x) → ((w=y) ∨ (w=z))).
 
 4. Let V be a vocabulary of the attribute (concept) language with complements (ALC) consisting of a role name "parent_of" and a concept name "Male". Interpret parent_of as "x is a parent of y" and M as "x is male". Where possible define the following formulas in this vocabulary; where not possible, explain why: 
   ```
